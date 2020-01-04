@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<title>Galerija</title>
+		
+		<style>
+			h1{
+			font-style: italic;
+			}
+			
+			h1:HOVER{
+			color: #009900;
+			}
+			
+			input{
+			color: #000066;
+			background-color: white;
+			}
+			
+			input:HOVER{
+			background-color: grey;		
+			}
+			
+			body{
+			background-color: #ffe6e6;
+			}
+			
+			img{
+			
+			padding-bottom: 5px;
+  			padding-right: 5px;
+  			padding-top: 5px;
+  			padding-left: 5px;
+			
+			}
+			
+			#titlePicture{
+			font-weight: bold;
+			text-decoration: underline;
+			}
+			
+			#descriptionPicture{
+			font-weight: bold;
+			text-decoration: underline;
+			}
+			
+			#tagsPicture{
+			font-weight: bold;
+			text-decoration: underline;
+			}
+		  
+		</style>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/htmlescaping.js"></script>
+		<script type="text/javascript"><!--
+
+		  $(document).ready( 
+			  function() {
+			  	inicijalna()
+		  	  } 
+		  );
+		
+		
+		function inicijalna(){
+			
+			  document.body.innerHTML = "";
+			
+			  var h1 = document.createElement("h1");
+			  h1.innerHTML = "Galerija slika";
+			  document.body.appendChild(h1); 
+			  
+			  var h2 = document.createElement("h2");
+			  h2.innerHTML = "Tagovi";
+			  document.body.appendChild(h2); 
+			  
+			  var p = document.createElement("p");
+			  p.innerHTML = "Odaberite neki tag, i prikazat vam će se slike!";
+			  document.body.appendChild(p); 
+
+			  var p2 = document.createElement("p");
+			  p2.id = "caseOfError";
+			  document.body.appendChild(p2); 
+			  
+			  $.ajax(
+				{
+					url: "rest/tagovi",
+					data:{
+						dummy: Math.random()
+					},
+					dataType: "json",
+					success: function(data){
+						
+						var tags = data;
+						
+						var allTags = document.getElementById("tag");
+						
+						for(var i = 0; i < tags.length; i++){
+						    
+						    var input = document.createElement("input");
+
+						    input.value = htmlEscape(tags[i]);
+						    input.name = "tag";
+						    input.id = i;
+						    input.class = "tag";
+						    input.type = "button";
+						    input.onclick = function(){
+								clickOnTag(this.value)
+							};
+						    
+						    document.body.appendChild(input);
+						    document.body.appendChild(document.createElement("br"));	
+						    
+						}
+						
+						var thumbs = document.createElement("div");
+						thumbs.id = "thumbnails";
+						document.body.appendChild(thumbs); 
+			
+						
+					},
+					error: function(data){
+						
+						var error = document.getElementById("caseOfError");
+						error.innerHTML = data[0]; 
+					}
+				}	  
+			  );			  
+		}
+		
+		function clickOnTag(string){
+			
+			var th = document.getElementById("thumbnails");
+			th.innerHTML = "";
+			
+			$.ajax(
+				{
+					url:"rest/tagovi/"+string,
+					data:{
+						dummy: Math.random()
+					},
+					dataType: "json",
+					success: function(data){
+						
+						var pictures = data;
+						
+						for(var i = 0; i < pictures.length; i++){
+							
+						    var img = document.createElement("img");
+						    img.height = 150;
+						    img.length = 150;
+						    img.src = "picture?title="+pictures[i]+"&type=thumbnails";
+						    img.id = "slika"+ pictures[i];
+						    img.onclick = function(){
+						    	showPicture(this.id)
+						    };
+						    th.appendChild(img);
+							
+						}	
+					}
+				}	
+			);
+			
+		}
+		
+		function showPicture(id){
+			
+			document.body.innerHTML = "";
+			
+			$.ajax(
+				{
+					url: "rest/tagovi/jedna/"+id,
+					data:{
+						dummy: Math.random()
+					},
+					dataType: "json",
+					success: function(data){
+					   
+						var pictureInformation = data;
+						
+						var s = document.createElement("h1");
+					    s.innerHTML = "Slika";
+					    s.id = "slikaJPG";
+					    document.body.appendChild(s);
+
+						var input = document.createElement("input");
+						
+						input.value = "Vrati se na početnu!";
+					    input.name = "return";
+					    input.id = "return";
+					    
+					    input.type = "button";
+					    input.onclick = function(){
+					    	inicijalna()
+						};
+						document.body.appendChild(input);
+											    
+					    var titlePicture = document.createElement("p");
+					    titlePicture.innerHTML = "Naslov: " + pictureInformation[0];
+					    titlePicture.id = "titlePicture";
+					    document.body.appendChild(titlePicture);
+					    
+					    var descriptionPicture = document.createElement("p");
+					    descriptionPicture.innerHTML = "Opis slike: " + pictureInformation[1];
+					    descriptionPicture.id = "descriptionPicture";
+					    document.body.appendChild(descriptionPicture);
+					    
+					    var tagsPicture = document.createElement("p");
+					    tagsPicture.innerHTML = "Tagovi: " + pictureInformation[2];
+					    tagsPicture.id = "tagsPicture";
+					    document.body.appendChild(tagsPicture);
+					    
+					    var img = document.createElement("img");
+					    img.src = "picture?title="+pictureInformation[0]+"&type=slike";
+					    document.body.appendChild(img);
+							
+					}
+				}	
+			);
+			
+			
+		}
+		
+		//--></script>
+	</head>
+	<body>	
+	</body>
+</html>

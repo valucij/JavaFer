@@ -1,0 +1,12 @@
+Method parseParameters should analyze paramString , determine there are two mappings and call:
+params.put("name", "joe");
+params.put("country", "usa");
+
+Put in webroot folder a sample text file ( sample.txt ), a sample html file ( index.html ) and a sample png
+image ( fruits.png ).
+
+You have successfully finished this problem if you can open a browser, enter following URLs (assuming
+host 127.0.0.1 and port 5721) and if you get correct response. Your text file must be displayed as is, your
+
+html file must be processed and rendered (you do not want to see HTML tags) and your image should be
+displayed as image. URLs are:

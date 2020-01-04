@@ -1,0 +1,47 @@
+{$= "text/html" @setMimeType $}<html>
+
+<head>
+
+<style>
+body{background-color: {$= "background" "0" @tparamGet $};}
+</style>
+
+</head>
+<body>
+
+<br>
+<a href="/scripts/osnovni.smscr">osnovni.smscr</a><br>
+<a href="/scripts/brojPoziva.smscr">brojPoziva.smscr</a><br>
+<a href="/scripts/fibonaccih.smscr">fibonaccih.smscr</a><br>
+<a href="/hello">Hello Worker</a><br>
+<a href="/cw">CirleWorker</a><br>
+
+<br>
+
+<p><b>Zbrajanje brojeva:</b></p>
+<form action="/calc" method="GET">
+
+a:<input type="text" name="a"  /><br>
+b:<input type="text" name="b"  /><br>
+ <input type="submit" value="Izračunaj!" name="izracun"  />
+</form>
+
+<br>
+<p><b>Mjenjanje boje:</b></p>
+<form action="/setbgcolor" method="GET">
+
+<select name="bgcolor">
+<option value="nijeIzabrano">Izaberi...</option>
+<option value="ff5050" >Crvena</option>
+<option value="339933">Zelena</option>
+<option value="0099cc">Plava</option>
+<option value="ff99cc">Roza</option>
+<option value="ffff66">Žuta</option>
+
+</select>
+<input type="submit" value="Promjeni boju!" name="boja"  />
+</form>
+
+
+
+</body></html>

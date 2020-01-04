@@ -1,0 +1,14 @@
+1	Death Grips	https://www.youtube.com/watch?v=2MHhLDCJ57E
+2	Fleetwood Mac	https://www.youtube.com/watch?v=6ul-cZyuYq4
+3	Gorillaz	https://www.youtube.com/watch?v=crC4DKiKPYY
+4	Led Zeppelin	https://www.youtube.com/watch?v=7IZ-jATBq9A
+5	Nick Cave & The Bad Seeds	https://www.youtube.com/watch?v=LnHoqHscTKE
+6	Pink Floyd	https://www.youtube.com/watch?v=cWGE9Gi0bB0
+7	The Doors	https://www.youtube.com/watch?v=MsP6EKAzEjI
+8	Radiohead	https://www.youtube.com/watch?v=6hgVihWjK2c
+9	The Strokes	https://www.youtube.com/watch?v=TOypSnKFHrE
+10	Tame Impala	https://www.youtube.com/watch?v=O2lzmpEs29M
+11	Talking Heads	https://www.youtube.com/watch?v=O52jAYa4Pm8
+12	Black Sabbath	https://www.youtube.com/watch?v=uk_wUT1CvWM
+13	The Beatles	https://www.youtube.com/watch?v=BOuu88OwdK8
+14	Queen	https://www.youtube.com/watch?v=fJ9rUzIMcZQ
